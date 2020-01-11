@@ -88,7 +88,41 @@ Jetzt müssen wir den Raspberry Pi einrichten was leicht klingt aber trotzdem ei
 
 ####  Rasbian Lite/Full
 
-#### Kodi
+Um ein Raspian Lite oder Full Image zu erstellen das auch für den Netzwerk Boot geiegnet ist müssen wir dieses ersteinmal ganz normal erstellen. Sprich wir Laden uns das Image von der offizielen Raspberry Pi Seite herunter installieren es wie es in der Dokumentation beschrieben ist.
+
+Nach dem ihr auf dem Pi ein vollständiges Rasbian System am laufen habt können wir Anfangen das System vorzubereiten. Als erstes werden wir das System Updaten damit es später auch auf dem neusten Stand ist.
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+```
+Nach dem das Abgeschlossen ist müssen wir das Swap System deaktivieren und entfernen, das geht recht simple mit folgenden Befehlen. 
+```
+sudo dphys-swapfile swapoff
+sudo dphys-swapfile uninstall
+sudo update-rc.d dphys-swapfile remove
+```
+Jetzt müssen wir noch ein Komplettes Backup von dem RFS machen. Damit wir dieses gleich nicht unnötig suchen müssen erstellen wir einen Ordner, hierbei ist es Sinnvoll einen Namen zu wähle der für den späteren Einsatz Sinnvoll ist, sprich wollt ihr den Pi im Flur aufstellen würde ich den Namen 'FlurPi' empfehlen.
+```
+mkdir -p /nfs/flurpi
+rsync -xa --progress --exclude /nfs / /nfs/flurpi
+```
+Das kann eine Weile dauern, bei mir hat das im Schnitt ca 20 min gedauert. Nach dem dieser Vorgang abgeschlossen ist müssen wir noch die SSH Keys neu generieren. Um das zu tun mounten wir das System und loggen uns über ``chroot`` ein.
+```
+cd /nfs/flurpi
+sudo mount --bind /dev dev
+sudo mount --bind /sys sys
+sudo mount --bind /proc proc
+rm /etc/ssh/ssh_host_*
+dpkg-reconfigure openssh-server
+exit
+sudo umount dev sys proc
+```
+
+
+#### Kodi ohne apt
+
+#### Kodi mit apt
 
  
 
