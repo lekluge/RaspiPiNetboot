@@ -1,0 +1,2 @@
+console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=10.42.1.21:/nfs/standard,vers=3 rw ip=dhcp elevator=deadline fsck.repair=yes rootwait
+

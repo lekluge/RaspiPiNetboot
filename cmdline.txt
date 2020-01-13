@@ -1,1 +1,0 @@
-root=/dev/nfs nfsroot=10.42.1.22:/nfs/client1 rw ip=dhcp rootwait elevator=deadline 
