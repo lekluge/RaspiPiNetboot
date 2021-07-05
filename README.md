@@ -191,7 +191,7 @@ Diese könnt ihr euch einfach aus meiner Repo runterladen und dann in den tftpbo
 **Wenn ihr mehrere Pi's per Netboot starten wollt, überspringt diesen Schritt und geht zur "Mehre Pi's" Sektion** 
 
 ```
-git clone https://git.chaospott.de/t1ggy/RaspiNetBoot.git
+git clone https://github.com/t1ggy/RaspiPiNetboot.git
 cp /RaspiNetBoot/bootfiles/* /tftpboot
 ```
 Danach müssen wir nur noch die ``cmdline.txt`` etwas editieren. Diese sieht wie folgt aus.
